@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.example.paulwintz.spirotechnicsapp.MainActivity">
+
+    <HorizontalScrollView
+        style="@style/HorizontalSlidingMenu">
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="60dp"
+            android:orientation="horizontal">
+
+            <Button
+                style="@style/HorizontalSlidingButton.ActivitySelectionButton"
+                android:text="Draw" />
+            <Button
+                style="@style/HorizontalSlidingButton.ActivitySelectionButton"
+                android:text="Saved"/>
+            <Button
+                style="@style/HorizontalSlidingButton.ActivitySelectionButton"
+                android:text="Help"/>
+            <Button
+                style="@style/HorizontalSlidingButton.ActivitySelectionButton"
+                android:text="Settings"/>
+            <Button
+                style="@style/HorizontalSlidingButton.ActivitySelectionButton"
+                android:text="Share"/>
+
+        </LinearLayout>
+
+    </HorizontalScrollView>
+
+
+    <com.example.paulwintz.spirotechnicsapp.CanvasView
+        android:id="@+id/canvas_view"
+        android:layout_width="match_parent"
+        android:layout_height="350dp" />
+
+    <!--<SurfaceView-->
+        <!--android:id="@+id/surfaceView"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="350dp" />-->
+
+    <HorizontalScrollView style="@style/HorizontalSlidingMenu"
+        android:layout_height="wrap_content">
+        <LinearLayout
+
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:orientation="horizontal">
+
+            <Button
+                style="@style/HorizontalSlidingButton.CategorySelectionButton"
+                android:text="Spirotechnic"/>
+            <Button
+                style="@style/HorizontalSlidingButton.CategorySelectionButton"
+                android:text="Line"/>
+            <Button
+                style="@style/HorizontalSlidingButton.CategorySelectionButton"
+                android:text="Animation"/>
+            <Button
+                style="@style/HorizontalSlidingButton.CategorySelectionButton"
+                android:text="Canvas"/>
+            <Button
+                style="@style/HorizontalSlidingButton.CategorySelectionButton"
+                android:text="Save"/>
+
+        </LinearLayout>
+
+    </HorizontalScrollView>
+
+    <FrameLayout
+        android:id="@+id/options_fragment"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <HorizontalScrollView style="@style/HorizontalSlidingMenu"
+            android:layout_height="match_parent">
+            <LinearLayout
+
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+
+                <Button
+                    style="@style/HorizontalSlidingButton.CategorySelectionButton"
+                    android:text="Spirotechnic"/>
+                <Button
+                    style="@style/HorizontalSlidingButton.CategorySelectionButton"
+                    android:text="Line"/>
+                <Button
+                    style="@style/HorizontalSlidingButton.CategorySelectionButton"
+                    android:text="Animation"/>
+                <Button
+                    style="@style/HorizontalSlidingButton.CategorySelectionButton"
+                    android:text="Canvas"/>
+                <Button
+                    style="@style/HorizontalSlidingButton.CategorySelectionButton"
+                    android:text="Save"/>
+
+            </LinearLayout>
+
+        </HorizontalScrollView>
+    </FrameLayout>
+
+
+
+</LinearLayout>
