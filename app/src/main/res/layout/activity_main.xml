@@ -29,21 +29,13 @@
             <Button
                 style="@style/HorizontalSlidingButton.ActivitySelectionButton"
                 android:text="Share"/>
-
         </LinearLayout>
-
     </HorizontalScrollView>
 
-
-    <com.example.paulwintz.spirotechnicsapp.CanvasView
+    <com.example.paulwintz.spirotechnicsapp.SpirotechnicView
         android:id="@+id/canvas_view"
         android:layout_width="match_parent"
         android:layout_height="350dp" />
-
-    <!--<SurfaceView-->
-        <!--android:id="@+id/surfaceView"-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="350dp" />-->
 
     <HorizontalScrollView style="@style/HorizontalSlidingMenu"
         android:layout_height="wrap_content">

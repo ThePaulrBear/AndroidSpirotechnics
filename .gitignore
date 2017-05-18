@@ -7,3 +7,5 @@
 /build
 /captures
 .externalNativeBuild
+app/libs/spirotechnics.jar
+.idea/

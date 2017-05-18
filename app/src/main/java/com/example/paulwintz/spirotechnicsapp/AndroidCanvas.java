@@ -1,5 +1,7 @@
 package com.example.paulwintz.spirotechnicsapp;
 
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.RectF;
@@ -26,6 +28,18 @@ public class AndroidCanvas implements  paul.wintz.canvas.Canvas<Canvas> {
     int width, height;
     float rotation, scale, centerX, centerY;
 
+    public AndroidCanvas(int width, int height, int numLayers) {
+        if(numLayers < 1) throw new IllegalArgumentException("There must be at least one layer");
+        this.width = width;
+        this.height = height;
+        layers = new ArrayList<>(numLayers);
+        for(int i = 0; i < numLayers; i++){
+            layers.add(createLayer());
+            paints.add(new Paint());
+        }
+        Log.d(TAG, String.format("Layers: %s, paints: %s", layers, paints));
+    }
+
     @Override
     public void setSize(int width, int height) {
         notImplementedError();
@@ -34,6 +48,13 @@ public class AndroidCanvas implements  paul.wintz.canvas.Canvas<Canvas> {
     @Override
     public void setScale(float scale) {
         this.scale = scale;
+    }
+
+    private Canvas createLayer(){
+        Bitmap bitmap = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888);
+        Canvas canvas = new Canvas(bitmap);
+        Log.d(TAG, String.format("canvas: %s", canvas));
+        return canvas;
     }
 
     @Override
@@ -48,7 +69,7 @@ public class AndroidCanvas implements  paul.wintz.canvas.Canvas<Canvas> {
     }
 
     @Override
-    public void line(float x0, float y0, float x1, float y1, Painter painter, Queue<Transformation<Canvas>> transformations) {
+    public void line(float x0, float y0, float x1, float y1, Painter painter) {
         Canvas layer = layers.get(painter.layer);
         Paint paint = paints.get(painter.layer);
         paint.setColor(painter.getStroke());
@@ -67,8 +88,23 @@ public class AndroidCanvas implements  paul.wintz.canvas.Canvas<Canvas> {
     }
 
     @Override
+    public void arc(float v, float v1, float v2, float v3, float v4, float v5, Painter painter) {
+        notImplementedError();
+    }
+
+    @Override
+    public void quad(float v, float v1, float v2, float v3, float v4, float v5, float v6, float v7, Painter painter) {
+        notImplementedError();
+    }
+
+    @Override
     public void drawPath(List<Vector> list, Painter painter, Queue<Transformation<Canvas>> queue) {
         notImplementedError();
+
+    }
+
+    @Override
+    public void drawPolygon(List<Vector> list, Painter painter, Queue<Transformation<Canvas>> queue) {
 
     }
 
@@ -99,14 +135,13 @@ public class AndroidCanvas implements  paul.wintz.canvas.Canvas<Canvas> {
     @Override
     public void clearAll() {
         notImplementedError();
-        for(Canvas layer : layers){
-            //TODO
-        }
     }
 
     @Override
     public void clearLayer(Painter painter) {
         notImplementedError();
+        Canvas layer = layers.get(painter.getLayer());
+        layer.drawColor(painter.getFill());
     }
 
     @Override
@@ -116,35 +151,27 @@ public class AndroidCanvas implements  paul.wintz.canvas.Canvas<Canvas> {
 
     @Override
     public int getWidth(){
-        notImplementedError();
-        return 0;
+        return width;
     }
 
     @Override
     public int getHeight() {
-
-        notImplementedError();
-        return 0;
+        return height;
     }
 
     @Override
     public double getScale() {
-        notImplementedError();
-        return 0;
+        return scale;
     }
 
     @Override
     public int getLayersCount() {
-
-        notImplementedError();
-        return 0;
+        return layers.size();
     }
 
     @Override
     public Canvas getImage() {
-
-        notImplementedError();
-        return null;
+        return layers.get(0);
     }
 
     @Override
@@ -165,6 +192,6 @@ public class AndroidCanvas implements  paul.wintz.canvas.Canvas<Canvas> {
     }
 
     private void notImplementedError() {
-        Log.e(TAG, new RuntimeException("Not implmented").getStackTrace()[0].toString());
+        Log.e(TAG, "Option not implemented", new RuntimeException());
     }
 }

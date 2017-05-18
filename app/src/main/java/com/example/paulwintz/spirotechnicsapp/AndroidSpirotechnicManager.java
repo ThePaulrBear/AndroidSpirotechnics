@@ -1,13 +1,7 @@
 package com.example.paulwintz.spirotechnicsapp;
 
-import android.content.Context;
 import android.graphics.Canvas;
-import android.graphics.Color;
-import android.graphics.Paint;
-import android.graphics.RectF;
-import android.util.AttributeSet;
 import android.util.Log;
-import android.view.View;
 import android.widget.Toast;
 
 import paul.wintz.spirotechnics.SpirotechnicManager;
@@ -19,15 +13,9 @@ import paul.wintz.spirotechnics.SpirotechnicManager;
 public class AndroidSpirotechnicManager extends SpirotechnicManager<Canvas> {
 
     private static class AndroidDisplayCallback extends DisplayCallback<Canvas> {
-        private View canvasView;
-
-        public AndroidDisplayCallback(SpirotechnicView view){
-            this.canvasView = view;
-        }
-
-        @Override
+            @Override
         public void onDisplay(Canvas canvas) {
-            canvasView.canvas =
+
         }
     };
     private static class AndroidToastCallback extends ToastCallback {
@@ -55,10 +43,14 @@ public class AndroidSpirotechnicManager extends SpirotechnicManager<Canvas> {
 
     public AndroidSpirotechnicManager() {
         super(
-                new AndroidCanvas(),
+                new AndroidCanvas(200, 200, 2),
                 new AndroidDisplayCallback(),
                 new AndroidToastCallback(),
                 new AndroidLogCallback());
+    }
+
+    public Canvas getCanvas(){
+        return getCanvasManager().getImage();
     }
 
 }
